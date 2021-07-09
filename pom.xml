@@ -14,10 +14,11 @@
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>17</java.version>
 		<hazelcast.version>4.2.1</hazelcast.version>
 		<hazelcast-hibernate53.version>2.2.0</hazelcast-hibernate53.version>
 		<h2.version>1.4.200</h2.version>
+		<lombok.version>1.18.20</lombok.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -47,6 +48,12 @@
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 
