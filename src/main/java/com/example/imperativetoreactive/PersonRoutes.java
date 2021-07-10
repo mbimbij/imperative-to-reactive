@@ -3,11 +3,11 @@ package com.example.imperativetoreactive;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.servlet.function.RouterFunction;
-import org.springframework.web.servlet.function.ServerResponse;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.servlet.function.RouterFunctions.route;
-import static org.springframework.web.servlet.function.ServerResponse.ok;
+import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Configuration
 public class PersonRoutes {
@@ -15,8 +15,8 @@ public class PersonRoutes {
   public RouterFunction<ServerResponse> routes(PersonRepository repository) {
     return route()
         .path("/person", builder -> builder
-            .GET("/", req -> ok().body(repository.findAll(Sort.by("lastName", "firstName"))))
-            .GET("/{id}", req -> ok().body(repository.findById(Long.valueOf(req.pathVariable("id")))))
+            .GET("/", req -> ok().bodyValue(repository.findAll(Sort.by("lastName", "firstName"))))
+            .GET("/{id}", req -> ok().bodyValue(repository.findById(Long.valueOf(req.pathVariable("id")))))
         ).build();
   }
 }
