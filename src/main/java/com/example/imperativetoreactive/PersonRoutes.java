@@ -12,18 +12,11 @@ import static org.springframework.web.servlet.function.ServerResponse.ok;
 @Configuration
 public class PersonRoutes {
   @Bean
-  public RouterFunction<ServerResponse> findAll(PersonRepository repository) {
-    return route().GET(
-        "/person",
-        req -> ok().body(repository.findAll(Sort.by("lastName", "firstName")))
-    ).build();
-  }
-
-  @Bean
-  public RouterFunction<ServerResponse> findById(PersonRepository repository) {
-    return route().GET(
-        "/person/{id}",
-        req -> ok().body(repository.findById(Long.valueOf(req.pathVariable("id"))))
-    ).build();
+  public RouterFunction<ServerResponse> routes(PersonRepository repository) {
+    return route()
+        .path("/person", builder -> builder
+            .GET("/", req -> ok().body(repository.findAll(Sort.by("lastName", "firstName"))))
+            .GET("/{id}", req -> ok().body(repository.findById(Long.valueOf(req.pathVariable("id")))))
+        ).build();
   }
 }
