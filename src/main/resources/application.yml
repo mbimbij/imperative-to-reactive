@@ -10,6 +10,11 @@ spring:
     hibernate:
       ddl-auto: 'create-drop'
     properties:
-      hibernate.dialect: org.hibernate.dialect.H2Dialect
-      generate_statistics: true
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        generate_statistics: true
+        cache:
+          use_second_level_cache: true
+          region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+
   h2.console.enabled: true
