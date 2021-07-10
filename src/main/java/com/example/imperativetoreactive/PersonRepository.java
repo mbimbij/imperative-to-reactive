@@ -1,6 +1,6 @@
 package com.example.imperativetoreactive;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.reactive.ReactiveSortingRepository;
 
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface PersonRepository extends ReactiveSortingRepository<Person, Long> {
 }
